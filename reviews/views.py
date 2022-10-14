@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth import get_user_model
 from accounts.models import User
+
 def index(request):
     reviews = Review.objects.all().order_by('-pk')
     page = int(request.GET.get('p', 1))

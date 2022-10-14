@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Review(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     like_users = models.ManyToManyField(get_user_model(), related_name='like_articles')
     title = models.CharField(max_length=10)
     content = models.TextField()
-    grade = models.IntegerField()
+    grade = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -1,42 +1,41 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  <div class="row mt-2">
-    <div class="col-12">
-      <div class="row mt-5">
-        <div class="col-12">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">평점</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-                <th scope="col">작성일</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for board in boards %}
-                {% if board.pk >= 1 %}
-                  {% if board.pk|divisibleby:2%}
-                    <tr class="table-success">
-                      <th scope="row">{{board.grade}}</th>
-                      <td>
-                        <a href="{% url 'reviews:detail' board.pk %}">{{board.title}}</a>
-                      </td>
-                      <td>{{board.user}}</td>
-                      <td>{{board.created_at |date:'Y-m-d'}}</td>
-                    </tr>
-                  {% elif not board.pk|divisibleby:2%}
-                    <tr class="table-warning">
-                      <th scope="row">{{board.grade}}</th>
-                      <td>
-                        <a href="{% url 'reviews:detail' board.pk %}">{{board.title}}</a>
-                      </td>
-                      <td>{{board.user}}</td>
-                      <td>{{board.updated_at |date:'Y-m-d'}}</td>
-                    </tr>
-                    {% endif%}
-                  {% endif %}
+  <div class="container">
+    <h1 class="text-center mt-5 ">게시판</h1>
+    <div class="row mt-2">
+      <div class="col-12">
+        <div class="row mt-5">
+          <div class="col-12">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">평점</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">작성자</th>
+                  <th scope="col">작성일</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                {% for board in boards %}
+                  <tr>
+                    {% if board.grade == 1 %}
+                      <th scope="row">⭐️</th>
+                    {% elif board.grade == 2 %}
+                      <th scope="row">⭐️⭐️</th>
+                    {% elif board.grade == 3 %}
+                      <th scope="row">⭐️⭐️⭐️</th>
+                    {% elif board.grade == 4 %}
+                      <th scope="row">⭐️⭐️⭐️⭐️</th>
+                    {% elif board.grade == 5 %}
+                      <th scope="row">⭐️⭐️⭐️⭐️⭐️</th>
+                    {% endif %}
+                    <td>
+                      <a class="text-dark fw-bolder" href="{% url 'reviews:detail' board.pk %}">{{board.title}}</a>
+                    </td>
+                    <td>{{board.user}}</td>
+                    <td>{{board.created_at |date:'m월 d일'}}</td>
+                  </tr>
                 {% endfor %}
               </tbody>
             </table>
@@ -73,14 +72,8 @@
             </nav>
           </div>
         </div>
-        <div class="row mt-2">
-          <div class="col-12">
-            <button class="btn btn-outline-primary">
-              <a href="{% url 'reviews:create' %}">글쓰기</a>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
