@@ -27,12 +27,11 @@
 <br>
 
 ## 👩🏻‍💻 Members
-
-<a href="https://github.com/jelly12paw/TwoTwo_PJT/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jelly12paw/TwoTwo_PJT" />
+<a href="https://github.com/HYUNSIK-JI/Movie_pair/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=HYUNSIK-JI/Movie_pair" />
 </a>
 
-백엔드 담당 : 지현식
+백엔드 담당 : 지현식<br>
 프론트 담당 : 백솔비
 
 <br>
