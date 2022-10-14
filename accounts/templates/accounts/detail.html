@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="width: 600px">
+  <div class="my-5">
+  <h1>{{ user.username }}님의 프로필</h1>
+  <hr>
+  <div class="d-flex">
+    <p class="mb-0" style="width:50%;">이메일</p>
+    <p class="mb-0" style="width:50%;">{{ user.email }}</p>
+  </div>
+  <hr>
+  <div class="d-flex">
+    <p class="mb-0" style="width:50%;">가입 시각</p>
+    <p class="mb-0" style="width:50%;">{{ user.date_joined }}</p>
+  </div>
+  <hr>
+  {% if request.user == user %}
+    <a href="{% url 'accounts:update' %}" class="btn btn-dark mt-3">회원정보수정</a>
+    <a href="{% url 'accounts:delete' %}" class="btn btn-danger mt-3">회원탈퇴</a>
+  {% endif %} 
+  </div>
+</div>
+{% endblock%}
