@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <div class="container" style="width: 600px">
+    <div class="my-5">
+      <h1 class="text-center">글수정</h1>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form Review_form %}
+        <input type="submit" value="수정" class="btn btn-dark">
+        <a href="{% url 'reviews:detail' reviews.pk %}" class="btn btn-light">취소</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
