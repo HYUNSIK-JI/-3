@@ -117,7 +117,7 @@ def search(request):
             Q(content__icontains = search)| #내용
             Q(grade__icontains = search)| #평점
             Q(user_id__username__icontains = search)| #작성자 이름
-            Q(id__in=list_) 
+            Q(id__in=list_) #댓글
         )
 
     if search:
