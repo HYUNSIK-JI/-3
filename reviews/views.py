@@ -100,14 +100,25 @@ def comments_delete(request, review_pk, comment_pk):
         if request.user == comment.user:
             comment.delete()
     return redirect('reviews:detail', review_pk)
+
+
 def search(request):
     search = request.GET.get('search','')
+    c = Comment.objects.filter(content = search)
+
+    list_ =[]
+    for i in c:
+        r = Review.objects.get(pk=i.article_id).id
+        list_.append(r)
+
     search_list = Review.objects.filter(
             Q(title__icontains = search) | #제목
             Q(content__icontains = search)| #내용
-            Q(grade__icontains = search) |#평점
-            Q(username__icontains = search)
+            Q(grade__icontains = search)| #평점
+            Q(user_id__username__icontains = search)| #작성자 이름
+            Q(id__in=list_) 
         )
+
     if search:
         if search_list:
             page = int(request.GET.get('p', 1))
